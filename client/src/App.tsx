@@ -1,10 +1,11 @@
-import { BrowserRouter, Routes, Route, Link } from "react-router-dom";
-import styles from "./App.module.css";
+import { BrowserRouter, useRoutes, Link } from 'react-router-dom';
+import { routes } from './router';
+import styles from './App.module.css';
 
-// Por ahora usamos componentes placeholder, luego los reemplazamos
-function Inicio() {
-  return <h2>Bienvenido a PetCare</h2>;
-}
+// useRoutes convierte el array de objetos RouteObject
+// en los componentes <Route> que React Router necesita.
+// Debe estar DENTRO de <BrowserRouter>, por eso lo separamos.
+const AppRoutes = () => useRoutes(routes);
 
 function App() {
   return (
@@ -23,10 +24,7 @@ function App() {
         </nav>
 
         <main className={styles.main}>
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            {/* Aquí iremos agregando las rutas de cada entidad */}
-          </Routes>
+          <AppRoutes />
         </main>
       </div>
     </BrowserRouter>
