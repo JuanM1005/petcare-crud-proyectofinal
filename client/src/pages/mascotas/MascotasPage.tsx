@@ -1,37 +1,43 @@
 import { useState } from 'react';
 import mascotasMock from './mockData';
 import type MascotaConDueno from './MascotasPage.types';
-import { Button } from '../../components';
+import type { MascotaFormData } from '../../components/MascotaForm/MascotaForm.types';
+import { Button, MascotaForm } from '../../components';
 import styles from './MascotasPage.module.css';
 
 export const MascotasPage = () => {
-  // useState guarda la lista de mascotas en memoria.
-  // Inicializamos con los datos mock por ahora.
   const [mascotas, setMascotas] = useState<MascotaConDueno[]>(mascotasMock);
+  const [showForm, setShowForm] = useState<boolean>(false);
 
-  // Función para eliminar una mascota del estado
   const handleDelete = (id: number) => {
-    // Muestra un cuadro de confirmación antes de eliminar
     const confirmado = window.confirm(
       '¿Estás seguro de eliminar esta mascota?',
     );
 
     if (confirmado) {
-      // filter recorre el arreglo y devuelve uno nuevo
-      // conservando solo las mascotas cuyo id es diferente
-      // al id que queremos eliminar
       setMascotas(mascotas.filter((mascota) => mascota.id !== id));
     }
+  };
+
+  const handleCreate = (data: MascotaFormData) => {
+    const nuevaMascota: MascotaConDueno = {
+      ...data,
+      id: Date.now(),
+      dueno_id: Number(data.dueno_id),
+      dueno_nombre: 'Dueño temporal',
+    };
+
+    setMascotas([...mascotas, nuevaMascota]);
+    setShowForm(false);
   };
 
   return (
     <div className={styles.container}>
       <div className={styles.header}>
         <h2 className={styles.title}>Mascotas</h2>
-        <button className={styles.addButton}>+ Nueva Mascota</button>
+        <Button label="+ Nueva Mascota" onClick={() => setShowForm(true)} />
       </div>
 
-      {/* La "R" de CRUD — Read */}
       <table className={styles.table}>
         <thead>
           <tr>
@@ -53,7 +59,7 @@ export const MascotasPage = () => {
               <td>{mascota.dueno_nombre}</td>
               <td>
                 <div className={styles.actions}>
-                  <Button label="Editar" onClick={() => {}} />
+                  <Button label="Editar" onClick={() => { }} />
                   <Button
                     label="Eliminar"
                     variant="danger"
@@ -65,6 +71,13 @@ export const MascotasPage = () => {
           ))}
         </tbody>
       </table>
+
+      {showForm && (
+        <MascotaForm
+          onSubmit={handleCreate}
+          onCancel={() => setShowForm(false)}
+        />
+      )}
     </div>
   );
 };
