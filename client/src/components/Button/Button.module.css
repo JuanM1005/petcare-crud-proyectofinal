@@ -1,0 +1,35 @@
+.base {
+  border: none;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--radius);
+  font-weight: 500;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.primary {
+  background-color: var(--color-primary);
+  color: white;
+}
+
+.primary:hover {
+  background-color: var(--color-primary-hover);
+}
+
+.danger {
+  background-color: var(--color-danger);
+  color: white;
+}
+
+.danger:hover {
+  background-color: var(--color-danger-hover);
+}
+
+.cancel {
+  background-color: var(--color-border);
+  color: var(--color-text);
+}
+
+.cancel:hover {
+  background-color: #cbd5e0;
+}

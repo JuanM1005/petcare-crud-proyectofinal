@@ -1,4 +1,4 @@
-import type { NavItem } from './Sidebar.types';
+import type NavItem from './Sidebar.types';
 
 export const navItems: NavItem[] = [
   { label: 'Inicio', path: '/' },

@@ -1,6 +1,7 @@
 import { useState } from 'react';
-import { mascotasMock } from './mockData';
-import type { MascotaConDueno } from './MascotasPage.types';
+import mascotasMock from './mockData';
+import type MascotaConDueno from './MascotasPage.types';
+import { Button } from '../../components';
 import styles from './MascotasPage.module.css';
 
 export const MascotasPage = () => {
@@ -52,13 +53,12 @@ export const MascotasPage = () => {
               <td>{mascota.dueno_nombre}</td>
               <td>
                 <div className={styles.actions}>
-                  <button className={styles.editButton}>Editar</button>
-                  <button
-                    className={styles.deleteButton}
+                  <Button label="Editar" onClick={() => {}} />
+                  <Button
+                    label="Eliminar"
+                    variant="danger"
                     onClick={() => handleDelete(mascota.id)}
-                  >
-                    Eliminar
-                  </button>
+                  />
                 </div>
               </td>
             </tr>

@@ -1,7 +1,7 @@
-import type { MascotaConDueno } from './MascotasPage.types';
+import type MascotaConDueno from './MascotasPage.types';
 
 // Datos simulados. Cuando conectemos la API, este archivo se elimina.
-export const mascotasMock: MascotaConDueno[] = [
+const mascotasMock: MascotaConDueno[] = [
   {
     id: 1,
     nombre: 'Luna',
@@ -39,3 +39,5 @@ export const mascotasMock: MascotaConDueno[] = [
     dueno_nombre: 'María Torres',
   },
 ];
+
+export default mascotasMock;
