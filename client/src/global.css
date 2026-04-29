@@ -1,0 +1,90 @@
+/* Reset */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Variables CSS: definen los colores y valores que usarás
+   en toda la app. Si quieres cambiar un color, lo cambias
+   aquí UNA vez y se actualiza en todos lados. */
+
+:root {
+  /* Colores principales */
+  --color-primary: #2b6cb0;
+  --color-primary-hover: #2c5282;
+  --color-danger: #c53030;
+  --color-danger-hover: #9b2c2c;
+  --color-success: #2f855a;
+
+  /* Fondos */
+  --color-bg: #f7f8fa;
+  --color-bg-card: #ffffff;
+  --color-sidebar: #1a1a2e;
+
+  /* Texto */
+  --color-text: #2d3748;
+  --color-text-light: #718096;
+  --color-text-inverse: #f7fafc;
+
+  /* Bordes y sombras */
+  --color-border: #e2e8f0;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+  /* Espaciado y bordes */
+  --radius: 8px;
+  --radius-sm: 4px;
+}
+
+body {
+  font-family:
+    "Segoe UI",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* Estilos base para links */
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Estilos base para botones — los CSS Modules
+   de cada componente los extenderán */
+button {
+  cursor: pointer;
+  font-family: inherit;
+  font-size: inherit;
+}
+
+/* Estilos base para inputs y selects */
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 0.95rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  color: var(--color-text);
+  background-color: var(--color-bg-card);
+  transition: border-color 0.2s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
