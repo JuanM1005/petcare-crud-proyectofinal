@@ -1,16 +1,30 @@
 .nav {
-  width: 220px;
-  background-color: var(--color-sidebar);
+  width: 240px;
+  background: linear-gradient(180deg, #0f2a4a 0%, #163d6b 100%);
   color: var(--color-text-inverse);
-  padding: 1.5rem 1rem;
+  padding: 1.75rem 1rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.5rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.logoIcon {
+  font-size: 1.6rem;
 }
 
 .logo {
-  font-size: 1.4rem;
-  margin: 0 0 1rem 0;
+  font-size: 1.35rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.3px;
 }
 
 .navList {
@@ -19,18 +33,32 @@
   margin: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 2px;
 }
 
 .navList a {
-  color: var(--color-text-inverse);
+  color: rgba(224, 237, 250, 0.75);
   text-decoration: none;
-  padding: 0.5rem 0.75rem;
+  padding: 0.6rem 0.85rem;
   border-radius: var(--radius-sm);
-  display: block;
-  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-weight: 500;
+  font-size: 0.92rem;
+  transition:
+    background-color 0.2s,
+    color 0.2s;
 }
 
 .navList a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: var(--color-sidebar-hover);
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.navIcon {
+  font-size: 1.1rem;
+  width: 1.5rem;
+  text-align: center;
 }
