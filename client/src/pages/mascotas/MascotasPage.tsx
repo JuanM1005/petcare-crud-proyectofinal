@@ -1,7 +1,18 @@
 import { useMascotas } from './useMascotas';
-import { MascotasTable } from './MascotasTable/MascotasTable';
-import { Button, MascotaForm } from '../../components';
+import type MascotaConDueno from './MascotasPage.types';
+import type { Column } from '../../components/DataTable/DataTable.types';
+import { Button, DataTable, MascotaForm } from '../../components';
 import styles from './MascotasPage.module.css';
+
+// Definimos las columnas fuera del componente porque son constantes.
+// Nota cómo TypeScript sabe qué keys son válidas gracias al genérico.
+const columns: Column<MascotaConDueno>[] = [
+  { key: 'nombre', label: 'Nombre' },
+  { key: 'especie', label: 'Especie' },
+  { key: 'raza', label: 'Raza' },
+  { key: 'fecha_nacimiento', label: 'Nacimiento' },
+  { key: 'dueno_nombre', label: 'Dueño' },
+];
 
 export const MascotasPage = () => {
   const {
@@ -23,8 +34,9 @@ export const MascotasPage = () => {
         <Button label="+ Nueva Mascota" onClick={handleNew} />
       </div>
 
-      <MascotasTable
-        mascotas={mascotas}
+      <DataTable
+        data={mascotas}
+        columns={columns}
         onEdit={handleEdit}
         onDelete={handleDelete}
       />
