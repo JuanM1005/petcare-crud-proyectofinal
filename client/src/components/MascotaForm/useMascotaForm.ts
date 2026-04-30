@@ -2,19 +2,21 @@ import { useState } from 'react';
 import type { MascotaFormData } from './MascotaForm.types';
 import initialFormData from './initialFormData';
 
-// Este hook encapsula toda la lógica del formulario.
-// El componente visual solo consume lo que el hook expone.
-export const useMascotaForm = (onSubmit: (data: MascotaFormData) => void) => {
-  const [formData, setFormData] = useState<MascotaFormData>(initialFormData);
+export const useMascotaForm = (
+  onSubmit: (data: MascotaFormData) => void,
+  initialData?: MascotaFormData,
+) => {
+  // Si recibimos initialData, el formulario arranca con esos valores.
+  // Si no, arranca vacío.
+  const [formData, setFormData] = useState<MascotaFormData>(
+    initialData ?? initialFormData,
+  );
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
-    const { name, value } = e.target; // Destructuring: obtenemos el "name" del input (para saber qué campo actualizar) y su "value"
-    setFormData({
-      ...formData,
-      [name]: name === 'dueno_id' ? Number(value) : value,
-    });
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
   };
 
   const handleSubmit = () => {
@@ -24,8 +26,6 @@ export const useMascotaForm = (onSubmit: (data: MascotaFormData) => void) => {
     }
 
     onSubmit(formData);
-
-    // Limpia el formulario después de enviar
     setFormData(initialFormData);
   };
 

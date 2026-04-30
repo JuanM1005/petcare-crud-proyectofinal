@@ -11,4 +11,5 @@ export interface MascotaFormData {
 export default interface MascotaFormProps {
   onSubmit: (data: MascotaFormData) => void;
   onCancel: () => void;
+  initialData?: MascotaFormData; // ? indica que este parametro es opcional
 }

@@ -3,13 +3,24 @@ import { useMascotaForm } from './useMascotaForm';
 import { Button } from '../Button/Button';
 import styles from './MascotaForm.module.css';
 
-export const MascotaForm = ({ onSubmit, onCancel }: MascotaFormProps) => {
-  const { formData, handleChange, handleSubmit } = useMascotaForm(onSubmit);
+export const MascotaForm = ({
+  onSubmit,
+  onCancel,
+  initialData,
+}: MascotaFormProps) => {
+  const { formData, handleChange, handleSubmit } = useMascotaForm(
+    onSubmit,
+    initialData,
+  );
+
+  const isEditing = !!initialData; // Convierte initialData a booleano: true si existe (modo edición), false si no (modo creación)
 
   return (
     <div className={styles.overlay}>
       <div className={styles.modal}>
-        <h3 className={styles.title}>Nueva Mascota</h3>
+        <h3 className={styles.title}>
+          {isEditing ? 'Editar Mascota' : 'Nueva Mascota'}
+        </h3>
 
         <label className={styles.label}>
           Nombre
@@ -80,7 +91,10 @@ export const MascotaForm = ({ onSubmit, onCancel }: MascotaFormProps) => {
 
         <div className={styles.buttons}>
           <Button label="Cancelar" variant="cancel" onClick={onCancel} />
-          <Button label="Guardar" onClick={handleSubmit} />
+          <Button
+            label={isEditing ? 'Actualizar' : 'Guardar'}
+            onClick={handleSubmit}
+          />
         </div>
       </div>
     </div>
