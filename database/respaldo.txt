@@ -1,0 +1,4 @@
+Comando utilizado para generar el respaldo en texto plano de la base de datos Petcare.
+Se utiliza la herramienta pg_dump de PostgreSQL desde la terminal:
+
+pg_dump -U postgres -d petcare_db -f respaldo_petcare.sql
