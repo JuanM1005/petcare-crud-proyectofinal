@@ -4,6 +4,8 @@ import {
   MascotasPage,
   PropietariosPage,
   VeterinariosPage,
+  TratamientosPage,
+  CitasPage,
 } from '../pages';
 
 export const routes: RouteObject[] = [
@@ -11,6 +13,6 @@ export const routes: RouteObject[] = [
   { path: '/mascotas', element: <MascotasPage /> },
   { path: '/propietarios', element: <PropietariosPage /> },
   { path: '/veterinarios', element: <VeterinariosPage /> },
-  // { path: '/citas', element: <CitasPage /> },
-  // { path: '/tratamientos', element: <TratamientosPage /> },
+  { path: '/citas', element: <CitasPage /> },
+  { path: '/tratamientos', element: <TratamientosPage /> },
 ];

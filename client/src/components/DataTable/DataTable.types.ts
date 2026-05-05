@@ -4,6 +4,7 @@
 export interface Column<T> {
   key: keyof T;
   label: string;
+  render?: (value: T[keyof T], item: T) => React.ReactNode;
 }
 
 // T es un genérico: significa "cualquier tipo de objeto".

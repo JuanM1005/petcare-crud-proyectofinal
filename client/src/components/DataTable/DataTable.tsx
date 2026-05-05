@@ -47,7 +47,11 @@ export const DataTable = <T extends { id: number }>({
               <tr key={item.id}>
                 {/* Iteración de columnas para renderizar las celdas de la fila actual */}
                 {columns.map((col) => (
-                  <td key={String(col.key)}>{String(item[col.key])}</td>
+                  <td key={String(col.key)}>
+                    {col.render
+                      ? col.render(item[col.key], item)
+                      : String(item[col.key])}
+                  </td>
                 ))}
 
                 {/* Columna final con los botones de acción (Editar y Eliminar) */}

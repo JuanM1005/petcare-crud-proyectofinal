@@ -7,3 +7,5 @@ export * from './MascotaForm/MascotaForm';
 export * from './PropietarioForm/PropietarioForm';
 export * from './VeterinarioForm/VeterinarioForm';
 export * from './DataTable/DataTable';
+export * from './ServicioForm/ServicioForm';
+export * from './CitaForm/CitaForm';
