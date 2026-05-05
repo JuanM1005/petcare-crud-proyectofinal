@@ -28,7 +28,7 @@ export const DataTable = <T extends { id: number }>({
             <th className={styles.actionsHeader}>Acciones</th>
           </tr>
         </thead>
-        
+
         {/* Renderizado del cuerpo de la tabla */}
         <tbody>
           {data.length === 0 ? (
@@ -49,7 +49,7 @@ export const DataTable = <T extends { id: number }>({
                 {columns.map((col) => (
                   <td key={String(col.key)}>{String(item[col.key])}</td>
                 ))}
-                
+
                 {/* Columna final con los botones de acción (Editar y Eliminar) */}
                 <td>
                   <div className={styles.actions}>
@@ -77,4 +77,3 @@ export const DataTable = <T extends { id: number }>({
     </div>
   );
 };
-

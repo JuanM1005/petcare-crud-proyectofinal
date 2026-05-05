@@ -21,7 +21,7 @@ function App() {
       <div className={styles.layout}>
         {/* Menú lateral de navegación persistente */}
         <Sidebar />
-        
+
         {/* Contenedor dinámico donde se cargan las páginas */}
         <main className={styles.main}>
           <AppRoutes />
@@ -32,4 +32,3 @@ function App() {
 }
 
 export default App;
-

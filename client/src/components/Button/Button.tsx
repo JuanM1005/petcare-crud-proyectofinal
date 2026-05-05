@@ -10,7 +10,7 @@ export const Button = ({
   label,
   onClick,
   variant = 'primary', // Variante por defecto si no se proporciona una
-  type = 'button',     // Tipo por defecto para evitar envíos accidentales en formularios
+  type = 'button', // Tipo por defecto para evitar envíos accidentales en formularios
 }: ButtonProps) => {
   // Combina la clase base obligatoria con la clase dinámica de la variante.
   // Ejemplo: Si variant es 'danger', className será "base danger"
@@ -22,4 +22,3 @@ export const Button = ({
     </button>
   );
 };
-

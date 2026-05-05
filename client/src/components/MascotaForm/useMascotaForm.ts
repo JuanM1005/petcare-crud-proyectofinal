@@ -32,7 +32,7 @@ export const useMascotaForm = (
 
     // Ejecuta el callback proporcionado por el componente padre
     onSubmit(formData);
-    
+
     // Resetea el formulario después de un envío exitoso
     setFormData(initialFormData);
   };

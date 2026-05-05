@@ -15,7 +15,7 @@ export const useMascotas = () => {
   const [loading, setLoading] = useState<boolean>(true);
   // Estado para capturar y mostrar mensajes de error
   const [error, setError] = useState<string | null>(null);
-  
+
   // Estado de UI: Controla la visibilidad del modal del formulario
   const [showForm, setShowForm] = useState<boolean>(false);
   // Estado de UI: Almacena la mascota que se está editando actualmente. Null si es creación.
