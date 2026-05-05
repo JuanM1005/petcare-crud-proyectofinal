@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import type { MascotaFormData } from './MascotaForm.types';
 import initialFormData from './initialFormData';
+import { propietariosService } from '../../services';
+import type { Propietario } from '../../pages/propietarios/PropietariosPage.types';
 
 export const useMascotaForm = (
   onSubmit: (data: MascotaFormData) => void,
@@ -13,13 +15,31 @@ export const useMascotaForm = (
     initialData ?? initialFormData,
   );
 
+  const [propietarios, setPropietarios] = useState<Propietario[]>([]);
+
+  useEffect(() => {
+    const fetchPropietarios = async () => {
+      try {
+        const data = await propietariosService.getAll();
+        setPropietarios(data);
+      } catch (error) {
+        console.error('Error al cargar propietarios:', error);
+      }
+    };
+    fetchPropietarios();
+  }, []);
+
   // Manejador genérico para todos los inputs y selects del formulario.
   // Actualiza dinámicamente la propiedad correspondiente basándose en el 'name' del elemento.
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+    if (name === 'propietario_id') {
+      setFormData({ ...formData, [name]: Number(value) });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
 
   // Validación básica y envío de datos.
@@ -37,5 +57,5 @@ export const useMascotaForm = (
     setFormData(initialFormData);
   };
 
-  return { formData, handleChange, handleSubmit };
+  return { formData, handleChange, handleSubmit, propietarios };
 };

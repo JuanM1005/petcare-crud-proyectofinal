@@ -19,24 +19,22 @@ const SEXO_OPTIONS = [
   { value: 'H', label: 'Hembra' },
 ];
 
-// Opciones hardcodeadas por ahora, idealmente vendrían del backend
-const PROPIETARIO_OPTIONS = [
-  { value: 1, label: 'Maria Gonzalez Lopez' },
-  { value: 2, label: 'Carlos Ramirez Soto' },
-  { value: 3, label: 'Ana Martinez Perez' },
-];
-
 export const MascotaForm = ({
   onSubmit,
   onCancel,
   initialData,
 }: MascotaFormProps) => {
-  const { formData, handleChange, handleSubmit } = useMascotaForm(
+  const { formData, handleChange, handleSubmit, propietarios } = useMascotaForm(
     onSubmit,
     initialData,
   );
 
   const isEditing = !!initialData;
+
+  const PROPIETARIO_OPTIONS = propietarios.map((p) => ({
+    value: p.id,
+    label: `${p.nombre} ${p.apellidos}`,
+  }));
 
   return (
     <Modal
