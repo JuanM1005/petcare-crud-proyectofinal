@@ -5,4 +5,5 @@ export * from './Select/Select';
 export * from './Modal/Modal';
 export * from './MascotaForm/MascotaForm';
 export * from './PropietarioForm/PropietarioForm';
+export * from './VeterinarioForm/VeterinarioForm';
 export * from './DataTable/DataTable';
