@@ -16,7 +16,7 @@ import styles from './Sidebar.module.css';
 const navItems: NavItem[] = [
   { label: 'Inicio', path: '/', icon: <Home size={20} /> },
   { label: 'Mascotas', path: '/mascotas', icon: <Dog size={20} /> },
-  { label: 'Dueños', path: '/duenos', icon: <Users size={20} /> },
+  { label: 'Propietarios', path: '/propietarios', icon: <Users size={20} /> },
   {
     label: 'Veterinarios',
     path: '/veterinarios',

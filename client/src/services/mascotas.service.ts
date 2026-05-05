@@ -1,8 +1,9 @@
 import type { Mascota } from '../pages/mascotas/MascotasPage.types';
+import { API_URLS } from './api';
 
 // La URL base de la API. Cuando se despliegue a producción,
 // esto se cambia por la URL del servidor real o mediante variables de entorno.
-const API_URL = 'http://localhost:3000/api/mascotas';
+const API_URL = API_URLS.mascotas;
 
 /**
  * Servicio mascotasService
