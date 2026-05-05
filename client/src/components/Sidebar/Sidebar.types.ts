@@ -1,5 +1,7 @@
+import React from 'react';
+
 export default interface NavItem {
   label: string;
   path: string;
-  icon: string;
+  icon: React.ReactNode;
 }

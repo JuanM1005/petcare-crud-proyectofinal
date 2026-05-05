@@ -61,7 +61,8 @@ export const createCita = async (req: Request, res: Response) => {
 export const updateCita = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { mascota_id, veterinario_id, fecha_hora, motivo, estado, notas } = req.body;
+    const { mascota_id, veterinario_id, fecha_hora, motivo, estado, notas } =
+      req.body;
     const result = await pool.query(
       `UPDATE citas
        SET mascota_id = $1, veterinario_id = $2, fecha_hora = $3,

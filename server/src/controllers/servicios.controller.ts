@@ -13,10 +13,9 @@ export const getServicios = async (_req: Request, res: Response) => {
 
 export const getServicioById = async (req: Request, res: Response) => {
   try {
-    const result = await pool.query(
-      'SELECT * FROM servicios WHERE id = $1',
-      [req.params.id],
-    );
+    const result = await pool.query('SELECT * FROM servicios WHERE id = $1', [
+      req.params.id,
+    ]);
 
     if (result.rows.length === 0) {
       res.status(404).json({ error: 'Servicio no encontrado' });

@@ -1,7 +1,30 @@
-import type MascotaFormProps from './MascotaForm.types';
+import type { MascotaFormProps } from './MascotaForm.types';
 import { useMascotaForm } from './useMascotaForm';
 import { Button } from '../Button/Button';
+import { Input } from '../Input/Input';
+import { Select } from '../Select/Select';
+import { Modal } from '../Modal/Modal';
 import styles from './MascotaForm.module.css';
+
+const ESPECIE_OPTIONS = [
+  { value: 'Perro', label: 'Perro' },
+  { value: 'Gato', label: 'Gato' },
+  { value: 'Ave', label: 'Ave' },
+  { value: 'Conejo', label: 'Conejo' },
+  { value: 'Otro', label: 'Otro' },
+];
+
+const SEXO_OPTIONS = [
+  { value: 'M', label: 'Macho' },
+  { value: 'H', label: 'Hembra' },
+];
+
+// Opciones hardcodeadas por ahora, idealmente vendrían del backend
+const PROPIETARIO_OPTIONS = [
+  { value: 1, label: 'Maria Gonzalez Lopez' },
+  { value: 2, label: 'Carlos Ramirez Soto' },
+  { value: 3, label: 'Ana Martinez Perez' },
+];
 
 export const MascotaForm = ({
   onSubmit,
@@ -13,90 +36,89 @@ export const MascotaForm = ({
     initialData,
   );
 
-  const isEditing = !!initialData; // Convierte initialData a booleano: true si existe (modo edición), false si no (modo creación)
+  const isEditing = !!initialData;
 
   return (
-    <div className={styles.overlay}>
-      <div className={styles.modal}>
-        <h3 className={styles.title}>
-          {isEditing ? 'Editar Mascota' : 'Nueva Mascota'}
-        </h3>
+    <Modal
+      isOpen={true}
+      onClose={onCancel}
+      title={isEditing ? 'Editar Mascota' : 'Nueva Mascota'}
+    >
+      <div className={styles.formGrid}>
+        <Input
+          label="Nombre"
+          name="nombre"
+          value={formData.nombre}
+          onChange={handleChange}
+          placeholder="Ej: Luna"
+          required
+        />
 
-        <label className={styles.label}>
-          Nombre
-          <input
-            type="text"
-            name="nombre"
-            value={formData.nombre}
+        <Select
+          label="Especie"
+          name="especie"
+          value={formData.especie}
+          onChange={handleChange}
+          options={ESPECIE_OPTIONS}
+          required
+        />
+
+        <Input
+          label="Raza"
+          name="raza"
+          value={formData.raza}
+          onChange={handleChange}
+          placeholder="Ej: Labrador"
+        />
+
+        <Select
+          label="Sexo"
+          name="sexo"
+          value={formData.sexo}
+          onChange={handleChange}
+          options={SEXO_OPTIONS}
+          required
+        />
+
+        <Input
+          label="Fecha de nacimiento"
+          type="date"
+          name="fecha_nacimiento"
+          value={formData.fecha_nacimiento}
+          onChange={handleChange}
+          required
+        />
+
+        <Input
+          label="Peso (kg)"
+          type="number"
+          name="peso_kg"
+          value={formData.peso_kg || ''}
+          onChange={handleChange}
+          placeholder="Ej: 12.5"
+          step="0.01"
+          min="0"
+        />
+
+        <div className={styles.fullWidth}>
+          <Select
+            label="Propietario"
+            name="propietario_id"
+            value={formData.propietario_id || ''}
             onChange={handleChange}
-            placeholder="Ej: Luna"
-            className={styles.input}
-          />
-        </label>
-
-        <label className={styles.label}>
-          Especie
-          <select
-            name="especie"
-            value={formData.especie}
-            onChange={handleChange}
-            className={styles.input}
-          >
-            <option value="">Seleccionar...</option>
-            <option value="Perro">Perro</option>
-            <option value="Gato">Gato</option>
-            <option value="Ave">Ave</option>
-            <option value="Reptil">Reptil</option>
-            <option value="Otro">Otro</option>
-          </select>
-        </label>
-
-        <label className={styles.label}>
-          Raza
-          <input
-            type="text"
-            name="raza"
-            value={formData.raza}
-            onChange={handleChange}
-            placeholder="Ej: Golden Retriever"
-            className={styles.input}
-          />
-        </label>
-
-        <label className={styles.label}>
-          Fecha de nacimiento
-          <input
-            type="date"
-            name="fecha_nacimiento"
-            value={formData.fecha_nacimiento}
-            onChange={handleChange}
-            className={styles.input}
-          />
-        </label>
-
-        <label className={styles.label}>
-          Dueño
-          <select
-            name="dueno_id"
-            value={formData.dueno_id}
-            onChange={handleChange}
-            className={styles.input}
-          >
-            <option value={0}>Seleccionar...</option>
-            <option value={1}>Carlos Ramírez</option>
-            <option value={2}>Ana López</option>
-            <option value={3}>María Torres</option>
-          </select>
-        </label>
-
-        <div className={styles.buttons}>
-          <Button label="Cancelar" variant="cancel" onClick={onCancel} />
-          <Button
-            label={isEditing ? 'Actualizar' : 'Guardar'}
-            onClick={handleSubmit}
+            options={PROPIETARIO_OPTIONS}
+            required
           />
         </div>
       </div>
-    </div>
+
+      <div className={styles.buttons}>
+        <Button label="Cancelar" variant="cancel" onClick={onCancel} />
+        <Button
+          label={isEditing ? 'Actualizar' : 'Guardar'}
+          onClick={handleSubmit}
+        />
+      </div>
+    </Modal>
   );
 };

@@ -1,45 +1,27 @@
 import type MascotasTableProps from './MascotasTable.types';
-import { Button } from '../../../components';
-import styles from './MascotasTable.module.css';
+import type { Mascota } from '../MascotasPage.types';
+import { DataTable } from '../../../components';
 
 export const MascotasTable = ({
   mascotas,
   onEdit,
   onDelete,
 }: MascotasTableProps) => {
+  const columns = [
+    { key: 'nombre' as keyof Mascota, label: 'Nombre' },
+    { key: 'especie' as keyof Mascota, label: 'Especie' },
+    { key: 'raza' as keyof Mascota, label: 'Raza' },
+    { key: 'fecha_nacimiento' as keyof Mascota, label: 'Nacimiento' },
+    { key: 'propietario_nombre' as keyof Mascota, label: 'Dueño' },
+  ];
+
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          <th>Nombre</th>
-          <th>Especie</th>
-          <th>Raza</th>
-          <th>Nacimiento</th>
-          <th>Dueño</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody>
-        {mascotas.map((mascota) => (
-          <tr key={mascota.id}>
-            <td>{mascota.nombre}</td>
-            <td>{mascota.especie}</td>
-            <td>{mascota.raza}</td>
-            <td>{mascota.fecha_nacimiento}</td>
-            <td>{mascota.dueno_nombre}</td>
-            <td>
-              <div className={styles.actions}>
-                <Button label="Editar" onClick={() => onEdit(mascota)} />
-                <Button
-                  label="Eliminar"
-                  variant="danger"
-                  onClick={() => onDelete(mascota.id)}
-                />
-              </div>
-            </td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <DataTable
+      data={mascotas}
+      columns={columns}
+      onEdit={onEdit}
+      onDelete={onDelete}
+      emptyMessage="No hay mascotas registradas"
+    />
   );
 };

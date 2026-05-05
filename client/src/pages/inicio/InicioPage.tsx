@@ -1,4 +1,13 @@
 import { Link } from 'react-router-dom';
+import {
+  Dog,
+  Users,
+  Stethoscope,
+  Calendar,
+  PawPrint,
+  PlusCircle,
+  Clock,
+} from 'lucide-react';
 import styles from './InicioPage.module.css';
 
 export const InicioPage = () => {
@@ -6,12 +15,15 @@ export const InicioPage = () => {
     <div className={styles.container}>
       {/* Hero */}
       <div className={styles.hero}>
-        <div className={styles.heroPattern}>🐾</div>
+        <div className={styles.heroPattern}>
+          <PawPrint size={240} strokeWidth={1} />
+        </div>
         <div className={styles.heroContent}>
           <h2 className={styles.heroTitle}>Bienvenido a PetCare</h2>
           <p className={styles.heroSubtitle}>
-            Sistema de gestión para clínicas veterinarias. Administra mascotas,
-            dueños, citas y tratamientos en un solo lugar.
+            Sistema de gestión avanzado para clínicas veterinarias. Administra
+            pacientes, propietarios, historiales y citas de manera eficiente y
+            profesional.
           </p>
         </div>
       </div>
@@ -19,55 +31,79 @@ export const InicioPage = () => {
       {/* Stats */}
       <div className={styles.statsGrid}>
         <div className={styles.statCard}>
-          <span className={styles.statIcon}>🐾</span>
-          <span className={styles.statNumber}>4</span>
-          <span className={styles.statLabel}>Mascotas</span>
+          <div className={styles.statIconWrapper}>
+            <Dog className={styles.statIcon} size={24} />
+          </div>
+          <div className={styles.statInfo}>
+            <span className={styles.statNumber}>4</span>
+            <span className={styles.statLabel}>Pacientes</span>
+          </div>
         </div>
         <div className={styles.statCard}>
-          <span className={styles.statIcon}>👤</span>
-          <span className={styles.statNumber}>3</span>
-          <span className={styles.statLabel}>Dueños</span>
+          <div className={styles.statIconWrapper}>
+            <Users className={styles.statIcon} size={24} />
+          </div>
+          <div className={styles.statInfo}>
+            <span className={styles.statNumber}>3</span>
+            <span className={styles.statLabel}>Dueños</span>
+          </div>
         </div>
         <div className={styles.statCard}>
-          <span className={styles.statIcon}>🩺</span>
-          <span className={styles.statNumber}>2</span>
-          <span className={styles.statLabel}>Veterinarios</span>
+          <div className={styles.statIconWrapper}>
+            <Stethoscope className={styles.statIcon} size={24} />
+          </div>
+          <div className={styles.statInfo}>
+            <span className={styles.statNumber}>3</span>
+            <span className={styles.statLabel}>Especialistas</span>
+          </div>
         </div>
         <div className={styles.statCard}>
-          <span className={styles.statIcon}>📅</span>
-          <span className={styles.statNumber}>5</span>
-          <span className={styles.statLabel}>Citas hoy</span>
+          <div className={styles.statIconWrapper}>
+            <Calendar className={styles.statIcon} size={24} />
+          </div>
+          <div className={styles.statInfo}>
+            <span className={styles.statNumber}>4</span>
+            <span className={styles.statLabel}>Citas Hoy</span>
+          </div>
         </div>
       </div>
 
       {/* Quick actions */}
       <div className={styles.section}>
-        <h3 className={styles.sectionTitle}>Acciones rápidas</h3>
+        <div className={styles.sectionHeader}>
+          <h3 className={styles.sectionTitle}>Acciones rápidas</h3>
+        </div>
         <div className={styles.actionsGrid}>
           <Link to="/mascotas" className={styles.actionCard}>
-            <div className={styles.actionIcon}>🐶</div>
+            <div className={styles.actionIcon}>
+              <PlusCircle size={28} />
+            </div>
             <div className={styles.actionInfo}>
-              <span className={styles.actionTitle}>Registrar mascota</span>
+              <span className={styles.actionTitle}>Registrar paciente</span>
               <span className={styles.actionDesc}>
-                Agregar una nueva mascota al sistema
+                Añadir una nueva mascota al sistema
               </span>
             </div>
           </Link>
           <Link to="/citas" className={styles.actionCard}>
-            <div className={styles.actionIcon}>📅</div>
+            <div className={styles.actionIcon}>
+              <Clock size={28} />
+            </div>
             <div className={styles.actionInfo}>
               <span className={styles.actionTitle}>Agendar cita</span>
               <span className={styles.actionDesc}>
-                Programar una consulta veterinaria
+                Programar consulta o tratamiento
               </span>
             </div>
           </Link>
           <Link to="/duenos" className={styles.actionCard}>
-            <div className={styles.actionIcon}>👤</div>
+            <div className={styles.actionIcon}>
+              <Users size={28} />
+            </div>
             <div className={styles.actionInfo}>
-              <span className={styles.actionTitle}>Nuevo dueño</span>
+              <span className={styles.actionTitle}>Nuevo propietario</span>
               <span className={styles.actionDesc}>
-                Registrar un nuevo propietario
+                Registrar datos de contacto
               </span>
             </div>
           </Link>

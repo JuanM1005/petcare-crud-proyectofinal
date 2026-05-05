@@ -1,7 +1,7 @@
-import type MascotaConDueno from '../MascotasPage.types';
+import type { Mascota } from '../MascotasPage.types';
 
 export default interface MascotasTableProps {
-  mascotas: MascotaConDueno[];
-  onEdit: (mascota: MascotaConDueno) => void;
+  mascotas: Mascota[];
+  onEdit: (mascota: Mascota) => void;
   onDelete: (id: number) => void;
 }

@@ -3,7 +3,9 @@ import pool from '../db/connection';
 
 export const getVeterinarios = async (_req: Request, res: Response) => {
   try {
-    const result = await pool.query('SELECT * FROM veterinarios ORDER BY id ASC');
+    const result = await pool.query(
+      'SELECT * FROM veterinarios ORDER BY id ASC',
+    );
     res.json(result.rows);
   } catch (err) {
     console.error('Error al obtener veterinarios:', err);
@@ -32,7 +34,8 @@ export const getVeterinarioById = async (req: Request, res: Response) => {
 
 export const createVeterinario = async (req: Request, res: Response) => {
   try {
-    const { nombre, apellidos, cedula_profesional, especialidad, email } = req.body;
+    const { nombre, apellidos, cedula_profesional, especialidad, email } =
+      req.body;
     const result = await pool.query(
       `INSERT INTO veterinarios (nombre, apellidos, cedula_profesional, especialidad, email)
        VALUES ($1, $2, $3, $4, $5)
@@ -49,7 +52,8 @@ export const createVeterinario = async (req: Request, res: Response) => {
 export const updateVeterinario = async (req: Request, res: Response) => {
   try {
     const { id } = req.params;
-    const { nombre, apellidos, cedula_profesional, especialidad, email } = req.body;
+    const { nombre, apellidos, cedula_profesional, especialidad, email } =
+      req.body;
     const result = await pool.query(
       `UPDATE veterinarios
        SET nombre = $1, apellidos = $2, cedula_profesional = $3,

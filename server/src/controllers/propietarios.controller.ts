@@ -3,7 +3,9 @@ import pool from '../db/connection';
 
 export const getPropietarios = async (_req: Request, res: Response) => {
   try {
-    const result = await pool.query('SELECT * FROM propietarios ORDER BY id ASC');
+    const result = await pool.query(
+      'SELECT * FROM propietarios ORDER BY id ASC',
+    );
     res.json(result.rows);
   } catch (err) {
     console.error('Error al obtener propietarios:', err);

@@ -1,15 +1,16 @@
 // Los datos que el formulario maneja internamente.
 export interface MascotaFormData {
+  propietario_id: number;
   nombre: string;
   especie: string;
   raza: string;
+  sexo: string;
   fecha_nacimiento: string;
-  dueno_id: number;
+  peso_kg: number;
 }
 
-// Las props que el componente recibe de su padre.
-export default interface MascotaFormProps {
+export interface MascotaFormProps {
   onSubmit: (data: MascotaFormData) => void;
   onCancel: () => void;
-  initialData?: MascotaFormData; // ? indica que este parametro es opcional
+  initialData?: MascotaFormData;
 }

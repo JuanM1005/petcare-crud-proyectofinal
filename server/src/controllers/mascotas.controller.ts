@@ -1,6 +1,12 @@
-import type { Request, Response } from "express";
-import pool from "../db/connection";
+import type { Request, Response } from 'express';
+import pool from '../db/connection';
 
+/**
+ * Endpoint: GET /api/mascotas
+ * Obtiene todas las mascotas registradas en la base de datos.
+ * Utiliza un INNER JOIN con la tabla propietarios para enriquecer los datos
+ * de la mascota con la información de contacto de su dueño.
+ */
 export const getMascotas = async (_req: Request, res: Response) => {
   try {
     const result = await pool.query(`
@@ -12,8 +18,8 @@ export const getMascotas = async (_req: Request, res: Response) => {
     `);
     res.json(result.rows);
   } catch (err) {
-    console.error("Error al obtener mascotas:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    console.error('Error al obtener mascotas:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
@@ -30,14 +36,14 @@ export const getMascotaById = async (req: Request, res: Response) => {
     );
 
     if (result.rows.length === 0) {
-      res.status(404).json({ error: "Mascota no encontrada" });
+      res.status(404).json({ error: 'Mascota no encontrada' });
       return;
     }
 
     res.json(result.rows[0]);
   } catch (err) {
-    console.error("Error al obtener mascota:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    console.error('Error al obtener mascota:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
@@ -60,8 +66,8 @@ export const createMascota = async (req: Request, res: Response) => {
     );
     res.status(201).json(result.rows[0]);
   } catch (err) {
-    console.error("Error al crear mascota:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    console.error('Error al crear mascota:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
@@ -96,32 +102,32 @@ export const updateMascota = async (req: Request, res: Response) => {
     );
 
     if (result.rows.length === 0) {
-      res.status(404).json({ error: "Mascota no encontrada" });
+      res.status(404).json({ error: 'Mascota no encontrada' });
       return;
     }
 
     res.json(result.rows[0]);
   } catch (err) {
-    console.error("Error al actualizar mascota:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    console.error('Error al actualizar mascota:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };
 
 export const deleteMascota = async (req: Request, res: Response) => {
   try {
     const result = await pool.query(
-      "DELETE FROM mascotas WHERE id = $1 RETURNING *",
+      'DELETE FROM mascotas WHERE id = $1 RETURNING *',
       [req.params.id],
     );
 
     if (result.rows.length === 0) {
-      res.status(404).json({ error: "Mascota no encontrada" });
+      res.status(404).json({ error: 'Mascota no encontrada' });
       return;
     }
 
-    res.json({ mensaje: "Mascota eliminada", dato: result.rows[0] });
+    res.json({ mensaje: 'Mascota eliminada', dato: result.rows[0] });
   } catch (err) {
-    console.error("Error al eliminar mascota:", err);
-    res.status(500).json({ error: "Error interno del servidor" });
+    console.error('Error al eliminar mascota:', err);
+    res.status(500).json({ error: 'Error interno del servidor' });
   }
 };

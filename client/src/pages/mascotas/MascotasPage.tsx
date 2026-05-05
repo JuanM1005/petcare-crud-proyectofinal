@@ -1,22 +1,23 @@
 import { useMascotas } from './useMascotas';
-import type MascotaConDueno from './MascotasPage.types';
+import type { Mascota } from './MascotasPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
 import { Button, DataTable, MascotaForm } from '../../components';
 import styles from './MascotasPage.module.css';
 
-// Definimos las columnas fuera del componente porque son constantes.
-// Nota cómo TypeScript sabe qué keys son válidas gracias al genérico.
-const columns: Column<MascotaConDueno>[] = [
+const columns: Column<Mascota>[] = [
   { key: 'nombre', label: 'Nombre' },
   { key: 'especie', label: 'Especie' },
   { key: 'raza', label: 'Raza' },
-  { key: 'fecha_nacimiento', label: 'Nacimiento' },
-  { key: 'dueno_nombre', label: 'Dueño' },
+  { key: 'sexo', label: 'Sexo' },
+  { key: 'peso_kg', label: 'Peso (kg)' },
+  { key: 'propietario_nombre', label: 'Propietario' },
 ];
 
 export const MascotasPage = () => {
   const {
     mascotas,
+    loading,
+    error,
     showForm,
     editingMascota,
     handleCreate,
@@ -26,6 +27,9 @@ export const MascotasPage = () => {
     handleNew,
     handleCancel,
   } = useMascotas();
+
+  if (loading) return <p>Cargando mascotas...</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div className={styles.container}>
@@ -48,11 +52,15 @@ export const MascotasPage = () => {
           initialData={
             editingMascota
               ? {
+                  propietario_id: editingMascota.propietario_id,
                   nombre: editingMascota.nombre,
                   especie: editingMascota.especie,
                   raza: editingMascota.raza,
-                  fecha_nacimiento: editingMascota.fecha_nacimiento,
-                  dueno_id: editingMascota.dueno_id,
+                  sexo: editingMascota.sexo,
+                  fecha_nacimiento: editingMascota.fecha_nacimiento
+                    ? editingMascota.fecha_nacimiento.split('T')[0]
+                    : '',
+                  peso_kg: editingMascota.peso_kg,
                 }
               : undefined
           }

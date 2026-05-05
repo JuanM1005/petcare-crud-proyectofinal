@@ -1,55 +1,91 @@
-import { useState } from 'react';
-import mascotasMock from './mockData';
-import type MascotaConDueno from './MascotasPage.types';
+import { useEffect, useState } from 'react';
+import type { Mascota } from './MascotasPage.types';
 import type { MascotaFormData } from '../../components/MascotaForm/MascotaForm.types';
+import { mascotasService } from '../../services';
 
+/**
+ * Custom Hook: useMascotas
+ * Gestiona el estado y la lógica de negocio completa para la entidad Mascotas.
+ * Actúa como intermediario entre la UI (vista) y los servicios de la API (modelo).
+ */
 export const useMascotas = () => {
-  const [mascotas, setMascotas] = useState<MascotaConDueno[]>(mascotasMock);
+  // Estado para almacenar la lista de mascotas
+  const [mascotas, setMascotas] = useState<Mascota[]>([]);
+  // Estado para controlar el indicador de carga durante las peticiones
+  const [loading, setLoading] = useState<boolean>(true);
+  // Estado para capturar y mostrar mensajes de error
+  const [error, setError] = useState<string | null>(null);
+  
+  // Estado de UI: Controla la visibilidad del modal del formulario
   const [showForm, setShowForm] = useState<boolean>(false);
-  const [editingMascota, setEditingMascota] = useState<MascotaConDueno | null>(
-    null,
-  );
+  // Estado de UI: Almacena la mascota que se está editando actualmente. Null si es creación.
+  const [editingMascota, setEditingMascota] = useState<Mascota | null>(null);
 
-  const handleCreate = (data: MascotaFormData) => {
-    const nuevaMascota: MascotaConDueno = {
-      ...data,
-      id: Date.now(),
-      dueno_id: Number(data.dueno_id),
-      dueno_nombre: 'Dueño temporal',
-    };
+  /**
+   * Efecto de inicialización
+   * Se ejecuta una sola vez cuando el componente que usa el hook se monta en el DOM.
+   * Carga los datos iniciales llamando a la API.
+   */
+  useEffect(() => {
+    fetchMascotas();
+  }, []);
 
-    setMascotas([...mascotas, nuevaMascota]);
-    setShowForm(false);
+  const fetchMascotas = async () => {
+    try {
+      setLoading(true);
+      const data = await mascotasService.getAll();
+      setMascotas(data);
+      setError(null);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Error desconocido');
+    } finally {
+      setLoading(false);
+    }
   };
 
-  const handleUpdate = (data: MascotaFormData) => {
-    setMascotas(
-      mascotas.map((mascota) =>
-        mascota.id === editingMascota?.id
-          ? {
-              ...mascota,
-              ...data,
-              dueno_id: Number(data.dueno_id),
-            }
-          : mascota,
-      ),
-    );
-
-    setEditingMascota(null);
-    setShowForm(false);
+  const handleCreate = async (data: MascotaFormData) => {
+    try {
+      await mascotasService.create(data);
+      // Después de crear, recargamos la lista completa.
+      // Así el JOIN trae el nombre del propietario correctamente.
+      await fetchMascotas();
+      setShowForm(false);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Error al crear');
+    }
   };
 
-  const handleDelete = (id: number) => {
+  const handleUpdate = async (data: MascotaFormData) => {
+    if (!editingMascota) return;
+
+    try {
+      await mascotasService.update(editingMascota.id, data);
+      await fetchMascotas();
+      setEditingMascota(null);
+      setShowForm(false);
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Error al actualizar');
+    }
+  };
+
+  const handleDelete = async (id: number) => {
     const confirmado = window.confirm(
       '¿Estás seguro de eliminar esta mascota?',
     );
 
-    if (confirmado) {
-      setMascotas(mascotas.filter((mascota) => mascota.id !== id));
+    if (!confirmado) return;
+
+    try {
+      await mascotasService.delete(id);
+      // Actualizamos el estado local sin recargar todo.
+      // Esto hace que la UI responda más rápido.
+      setMascotas(mascotas.filter((m) => m.id !== id));
+    } catch (err) {
+      alert(err instanceof Error ? err.message : 'Error al eliminar');
     }
   };
 
-  const handleEdit = (mascota: MascotaConDueno) => {
+  const handleEdit = (mascota: Mascota) => {
     setEditingMascota(mascota);
     setShowForm(true);
   };
@@ -66,6 +102,8 @@ export const useMascotas = () => {
 
   return {
     mascotas,
+    loading,
+    error,
     showForm,
     editingMascota,
     handleCreate,

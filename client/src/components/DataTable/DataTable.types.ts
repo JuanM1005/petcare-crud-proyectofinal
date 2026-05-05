@@ -16,4 +16,5 @@ export interface DataTableProps<T extends { id: number }> {
   columns: Column<T>[];
   onEdit: (item: T) => void;
   onDelete: (id: number) => void;
+  emptyMessage?: string;
 }
