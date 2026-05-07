@@ -7,6 +7,7 @@ import veterinariosRoutes from './routes/veterinarios.routes';
 import serviciosRoutes from './routes/servicios.routes';
 import citasRoutes from './routes/citas.routes';
 import citasServiciosRoutes from './routes/citasServicios.routes';
+import dashboardRoutes from './routes/dashboard.routes';
 
 // Carga las variables de entorno del archivo .env
 dotenv.config();
@@ -30,6 +31,7 @@ app.use('/api/veterinarios', veterinariosRoutes);
 app.use('/api/servicios', serviciosRoutes);
 app.use('/api/citas', citasRoutes);
 app.use('/api/citas-servicios', citasServiciosRoutes);
+app.use('/api/dashboard', dashboardRoutes);
 
 // Inicia el servidor express en el puerto configurado
 app.listen(PORT, () => {
