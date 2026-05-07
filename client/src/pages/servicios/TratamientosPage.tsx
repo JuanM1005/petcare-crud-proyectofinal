@@ -1,3 +1,4 @@
+import { Syringe } from 'lucide-react';
 import { useTratamientos } from './useTratamientos';
 import type { Servicio } from './TratamientosPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
@@ -31,8 +32,15 @@ export const TratamientosPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.titleGroup}>
+        <div className={styles.iconWrap}>
+          <Syringe size={22} />
+        </div>
         <h2 className={styles.title}>Tratamientos</h2>
+      </div>
+      <div className={styles.accentLine} />
+
+      <div className={styles.header}>
         <Button label="+ Nuevo Tratamiento" onClick={handleNew} />
       </div>
 

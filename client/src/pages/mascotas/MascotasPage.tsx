@@ -1,3 +1,4 @@
+import { PawPrint } from 'lucide-react';
 import { useMascotas } from './useMascotas';
 import type { Mascota } from './MascotasPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
@@ -33,8 +34,15 @@ export const MascotasPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.titleGroup}>
+        <div className={styles.iconWrap}>
+          <PawPrint size={22} />
+        </div>
         <h2 className={styles.title}>Mascotas</h2>
+      </div>
+      <div className={styles.accentLine} />
+
+      <div className={styles.header}>
         <Button label="+ Nueva Mascota" onClick={handleNew} />
       </div>
 

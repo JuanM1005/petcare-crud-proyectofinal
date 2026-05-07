@@ -9,4 +9,5 @@ export const API_URLS = {
   servicios: `${API_BASE}/servicios`,
   citas: `${API_BASE}/citas`,
   citasServicios: `${API_BASE}/citas-servicios`,
+  dashboard: `${API_BASE}/dashboard`,
 };

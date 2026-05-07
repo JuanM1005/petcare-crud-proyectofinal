@@ -1,3 +1,4 @@
+import { Users } from 'lucide-react';
 import { usePropietarios } from './usePropietarios';
 import type { Propietario } from './PropietariosPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
@@ -32,8 +33,15 @@ export const PropietariosPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.titleGroup}>
+        <div className={styles.iconWrap}>
+          <Users size={22} />
+        </div>
         <h2 className={styles.title}>Propietarios</h2>
+      </div>
+      <div className={styles.accentLine} />
+
+      <div className={styles.header}>
         <Button label="+ Nuevo Propietario" onClick={handleNew} />
       </div>
 

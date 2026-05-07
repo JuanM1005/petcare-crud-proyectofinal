@@ -1,3 +1,4 @@
+import { Stethoscope } from 'lucide-react';
 import { useVeterinarios } from './useVeterinarios';
 import type { Veterinario } from './VeterinariosPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
@@ -32,8 +33,15 @@ export const VeterinariosPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.titleGroup}>
+        <div className={styles.iconWrap}>
+          <Stethoscope size={22} />
+        </div>
         <h2 className={styles.title}>Veterinarios</h2>
+      </div>
+      <div className={styles.accentLine} />
+
+      <div className={styles.header}>
         <Button label="+ Nuevo Veterinario" onClick={handleNew} />
       </div>
 

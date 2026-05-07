@@ -1,7 +1,8 @@
+import { CalendarCheck } from 'lucide-react';
 import { useCitas } from './useCitas';
 import type { Cita } from './CitasPage.types';
 import type { Column } from '../../components/DataTable/DataTable.types';
-import { Button, DataTable, CitaForm } from '../../components';
+import { Button, DataTable, CitaForm, StatusBadge } from '../../components';
 import styles from './CitasPage.module.css';
 
 const columns: Column<Cita>[] = [
@@ -12,7 +13,6 @@ const columns: Column<Cita>[] = [
     label: 'Fecha/Hora',
     render: (value) => {
       if (!value) return '';
-      // Formatear ISO timestamp a dd/mm/yyyy hh:mm
       const date = new Date(value as string);
       const day = String(date.getDate()).padStart(2, '0');
       const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -23,7 +23,11 @@ const columns: Column<Cita>[] = [
     },
   },
   { key: 'motivo', label: 'Motivo' },
-  { key: 'estado', label: 'Estado' },
+  {
+    key: 'estado',
+    label: 'Estado',
+    render: (value) => <StatusBadge status={value as string} />,
+  },
 ];
 
 export const CitasPage = () => {
@@ -46,8 +50,15 @@ export const CitasPage = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
+      <div className={styles.titleGroup}>
+        <div className={styles.iconWrap}>
+          <CalendarCheck size={22} />
+        </div>
         <h2 className={styles.title}>Citas</h2>
+      </div>
+      <div className={styles.accentLine} />
+
+      <div className={styles.header}>
         <Button label="+ Nueva Cita" onClick={handleNew} />
       </div>
 
@@ -68,7 +79,7 @@ export const CitasPage = () => {
               ? {
                   mascota_id: editingCita.mascota_id,
                   veterinario_id: editingCita.veterinario_id,
-                  fecha_hora: editingCita.fecha_hora, // the form should convert it internally
+                  fecha_hora: editingCita.fecha_hora,
                   motivo: editingCita.motivo,
                   estado: editingCita.estado,
                   notas: editingCita.notas || '',
