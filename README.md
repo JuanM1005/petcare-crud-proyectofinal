@@ -2,7 +2,7 @@
 
 CRUD web para la gestión de una clínica veterinaria: mascotas, propietarios, veterinarios, citas y servicios.
 
-Proyecto final de la materia **Bases de Datos V0718**.
+Proyecto final de la materia **DESARROLLO DE APLICACIONES WEB EN LA NUBE Y MÓVILES V0749**.
 
 ## Tecnologías
 
