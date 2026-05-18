@@ -16,6 +16,12 @@ const pool = new Pool({
   user: process.env.DB_USER,
   password: process.env.DB_PASSWORD,
   database: process.env.DB_NAME,
+  // En la nube (Neon, Supabase, Render) la conexión exige SSL.
+  // En local normalmente NO se usa SSL. Se activa con la variable DB_SSL=true.
+  ssl:
+    process.env.DB_SSL === 'true'
+      ? { rejectUnauthorized: false }
+      : undefined,
 });
 
 /**
@@ -30,8 +36,6 @@ const checkConnection = async () => {
   } catch (err) {
     if (err instanceof Error) {
       console.error('Error crítico al conectar a PostgreSQL:', err.message);
-      // Opcional: cerrar el proceso si la base de datos es vital
-      // process.exit(1);
     }
   }
 };
