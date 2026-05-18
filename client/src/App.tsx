@@ -1,5 +1,5 @@
 import { BrowserRouter, useRoutes } from 'react-router-dom';
-import { Sidebar } from './components';
+import { Sidebar, Footer } from './components';
 import { routes } from './router';
 import styles from './App.module.css';
 
@@ -23,9 +23,12 @@ function App() {
         <Sidebar />
 
         {/* Contenedor dinámico donde se cargan las páginas */}
-        <main className={styles.main}>
-          <AppRoutes />
-        </main>
+        <div className={styles.contentWrapper}>
+          <main className={styles.main}>
+            <AppRoutes />
+          </main>
+          <Footer />
+        </div>
       </div>
     </BrowserRouter>
   );

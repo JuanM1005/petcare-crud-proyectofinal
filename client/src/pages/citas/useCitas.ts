@@ -10,7 +10,11 @@ export const useCitas = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingCita, setEditingCita] = useState<Cita | null>(null);
 
-  const fetchCitas = async () => {
+  useEffect(() => {
+    fetchCitas();
+  }, []);
+
+  async function fetchCitas() {
     try {
       setLoading(true);
       const data = await citasService.getAll();
@@ -21,11 +25,7 @@ export const useCitas = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchCitas();
-  }, []);
+  }
 
   const handleCreate = async (
     data: Omit<

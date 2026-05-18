@@ -15,7 +15,7 @@ export const useVeterinarios = () => {
     fetchVeterinarios();
   }, []);
 
-  const fetchVeterinarios = async () => {
+  async function fetchVeterinarios() {
     try {
       setLoading(true);
       const data = await veterinariosService.getAll();
@@ -26,7 +26,7 @@ export const useVeterinarios = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleCreate = async (data: VeterinarioFormData) => {
     try {

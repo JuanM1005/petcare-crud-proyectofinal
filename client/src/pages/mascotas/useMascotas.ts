@@ -30,7 +30,7 @@ export const useMascotas = () => {
     fetchMascotas();
   }, []);
 
-  const fetchMascotas = async () => {
+  async function fetchMascotas() {
     try {
       setLoading(true);
       const data = await mascotasService.getAll();
@@ -41,7 +41,7 @@ export const useMascotas = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleCreate = async (data: MascotaFormData) => {
     try {

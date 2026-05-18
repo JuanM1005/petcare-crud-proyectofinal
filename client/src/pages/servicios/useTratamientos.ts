@@ -10,7 +10,11 @@ export const useTratamientos = () => {
   const [showForm, setShowForm] = useState(false);
   const [editingServicio, setEditingServicio] = useState<Servicio | null>(null);
 
-  const fetchServicios = async () => {
+  useEffect(() => {
+    fetchServicios();
+  }, []);
+
+  async function fetchServicios() {
     try {
       setLoading(true);
       const data = await serviciosService.getAll();
@@ -21,11 +25,7 @@ export const useTratamientos = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  useEffect(() => {
-    fetchServicios();
-  }, []);
+  }
 
   const handleCreate = async (data: Omit<Servicio, 'id'>) => {
     try {

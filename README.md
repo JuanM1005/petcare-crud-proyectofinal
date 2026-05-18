@@ -1,8 +1,30 @@
-# 🐾 PetCare — Sistema de Gestión Veterinaria
+# 🐾 PetCare - Sistema Veterinario PWA Offline-First
+
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-B73BFE?style=for-the-badge&logo=vite&logoColor=FFD62E)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)
 
 CRUD web para la gestión de una clínica veterinaria: mascotas, propietarios, veterinarios, citas y servicios.
 
 Proyecto final de la materia **DESARROLLO DE APLICACIONES WEB EN LA NUBE Y MÓVILES V0749**.
+
+> 🎥 **[Video Demostrativo del Proyecto (Inserta tu enlace aquí)](#)**
+
+## 📋 Índice
+
+- [Problema o necesidad que resuelve](#problema-o-necesidad-que-resuelve)
+- [Funcionalidades principales](#funcionalidades-principales)
+- [Tecnologías](#tecnologías)
+- [Instalación y Ejecución](#requisitos-previos)
+- [Estructura del proyecto](#estructura-del-proyecto)
+- [Base de datos y API REST](#base-de-datos)
+- [Inteligencia Artificial Utilizada](#herramientas-de-ia-utilizadas)
+- [Evidencias Visuales](#capturas-de-pantalla-o-evidencias)
+- [Equipo y Conclusiones](#equipo)
+
+---
 
 ## Tecnologías
 
@@ -186,3 +208,45 @@ Las consultas `SELECT` utilizan `INNER JOIN` para traer datos relacionados (ej. 
 | Líder de Desarrollo e Interfaz | Juan | Diseño y programación del CRUD web, conexión con PostgreSQL, descripción de la tecnología |
 | Especialista en Bases de Datos | Eriberto | Implementación de tablas, scripts SQL, inserción de registros, respaldo |
 | Arquitecto y Documentador | Renata | Modelos E-R y Relacional, diccionario de datos, compilación del PDF |
+
+---
+
+## Problema o necesidad que resuelve
+Las clínicas veterinarias pequeñas y medianas (PyMES) suelen depender de procesos manuales o de sistemas que requieren 100% de conexión a internet. Esto provoca parálisis operativa, pérdida de historiales clínicos y descontrol de inventario cuando ocurren caídas de red. PetCare resuelve esto centralizando la información mediante una arquitectura que permite seguir operando sin conexión a internet.
+
+## Funcionalidades principales
+- **Arquitectura Offline-First:** Operatividad continua mediante PWA y almacenamiento local con IndexedDB.
+- **Gestión de Pacientes y Propietarios:** Registro, consulta y edición de información clínica básica y datos de contacto.
+- **Módulo de Citas y Expedientes:** Control de la agenda veterinaria y registro de consultas médicas.
+- **Sincronización en Segundo Plano:** Sincronización automática con el servidor (PostgreSQL) cuando regresa el internet, usando generación de UUIDs locales y regla de "Last Write Wins".
+
+## Herramientas de IA utilizadas
+- **Gemini (Modelo 3.1 Pro):** Se utilizó como asistente principal para la toma de decisiones de arquitectura, validación de código TypeScript/React y estructuración de la documentación técnica.
+- **NotebookLM:** Utilizado para analizar los documentos del proyecto y estructurar los guiones para el pitch técnico de defensa.
+- **Antygravity:** Utilizada para la edición directa de archivos, revisión, formateo y ajustes generales en la estructura del proyecto.
+
+## Prompts principales o resumen del uso de IA
+La IA no se utilizó para generar el proyecto desde cero, sino como apoyo técnico, de edición y validación:
+1. **Revisión de Arquitectura de BD:** *"Revisa los diagramas y dime qué haría falta para mi proyecto modular"*. Esto derivó en la recomendación de usar UUIDs v4 generados en el cliente en lugar de IDs seriales para evitar colisiones offline.
+2. **Depuración y Edición de Archivos:** Uso de Antygravity para agilizar la modificación de archivos de código y texto. Validación de errores de compilación de Vite en los componentes de UI creados por el equipo (React/Tailwind).
+3. **Redacción técnica:** Estructuración de documentos formales como el Software Requirements Specification (SRS), Documento de Diseño (SDD) y guiones de defensa basándose en la información cruda del equipo.
+
+## Capturas de pantalla o evidencias
+
+![Dashboard de Inicio - Parte Alta](./client/public/inicioalto.png)
+*Vista principal del sistema y dashboard.*
+
+![Dashboard de Inicio - Parte Baja](./client/public/iniciopartebaja.png)
+*Detalle inferior de la vista principal.*
+
+![Formulario de Mascotas](./client/public/Mascotas.png)
+*Gestión de pacientes operando.*
+
+![Agenda y Citas](./client/public/Agenda_citas.png)
+*Control de citas de la clínica.*
+
+## Conclusiones individuales del equipo
+
+- **Juan Antonio (Frontend UI/UX):** Consolidar el sistema de diseño con React y Tailwind CSS fue un paso fundamental. Logramos construir primitivos visuales reutilizables que no solo cumplen con normativas de accesibilidad, sino que brindan una interfaz clara que reduce la fricción al capturar datos en momentos de fallas de red.
+- **Renata Margarita (Product Owner / Gestión y Documentación):** El éxito de esta fase radicó en priorizar el alcance del MVP hacia el modelo Offline-First. Adicionalmente, estructurar la documentación técnica en los documentos PDF nos permitió justificar de manera formal nuestras decisiones de arquitectura y mantener al equipo alineado con los requerimientos del cliente piloto.
+- **Eriberto Orozco (Backend / Arquitectura y Base de Datos):** Implementar la persistencia dual supuso un gran reto técnico. A través de IndexedDB, la generación de UUIDs nativos y el desarrollo de nuestra API conectada a PostgreSQL, logramos establecer una arquitectura robusta que previene colisiones de datos y garantiza la integridad de la clínica en todo momento.
