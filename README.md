@@ -245,11 +245,24 @@ Las clínicas veterinarias pequeñas y medianas (PyMES) suelen depender de proce
 - **NotebookLM:** Utilizado para analizar los documentos del proyecto y estructurar los guiones para el pitch técnico de defensa.
 - **Antygravity:** Utilizada para la edición directa de archivos, revisión, formateo y ajustes generales en la estructura del proyecto.
 
-## Prompts principales o resumen del uso de IA
-La IA no se utilizó para generar el proyecto desde cero, sino como apoyo técnico, de edición y validación:
-1. **Revisión de Arquitectura de BD:** *"Revisa los diagramas y dime qué haría falta para mi proyecto modular"*. Esto derivó en la recomendación de usar UUIDs v4 generados en el cliente en lugar de IDs seriales para evitar colisiones offline.
-2. **Depuración y Edición de Archivos:** Uso de Antygravity para agilizar la modificación de archivos de código y texto. Validación de errores de compilación de Vite en los componentes de UI creados por el equipo (React/Tailwind).
-3. **Redacción técnica:** Estructuración de documentos formales como el Software Requirements Specification (SRS), Documento de Diseño (SDD) y guiones de defensa basándose en la información cruda del equipo.
+### 🤖 Prompts principales utilizados para el desarrollo e ingeniería
+
+A continuación se listan los prompts exactos utilizados en la interacción con la IA para la resolución de problemas lógicos, optimización de código y arquitectura:
+
+#### 1. Prompt para la optimización de Base de Datos y Arquitectura Offline-First
+> *"Revisa los diagramas del sistema y la estructura modular de nuestra PWA veterinaria. ¿Qué estrategia de indexación e identificadores únicos nos recomiendas implementar para evitar colisiones de datos y conflictos de duplicidad al guardar registros de mascotas de forma local (Offline) y sincronizarlos posteriormente en la base de datos central de PostgreSQL?"*
+>
+> **Resultado:** Derivó en la recomendación de migrar de IDs seriales tradicionales a la generación de UUIDs v4 en el cliente y la implementación del motor de sincronización "Last Write Wins".
+
+#### 2. Prompt para la resolución de errores de ESLint (Hoisting y useEffect)
+> *"Estoy trabajando con React 19 y TypeScript usando Bun. Al correr 'bun run lint' en mi frontend (client/src/pages/), ESLint me arroja el error 'Cannot access variable before it is declared' porque tengo funciones flecha (`const fetchX = async () => {...}`) que se mandan llamar dentro del `useEffect` pero están declaradas abajo de él. Además, me marca la advertencia 'Calling setState synchronously within an effect can trigger cascading renders' debido al `setLoading(true)`. ¿Cómo puedo refactorizar mis Custom Hooks (`useMascotas.ts`, `useCitas.ts`, `usePropietarios.ts`, `useTratamientos.ts`, `useVeterinarios.ts`) para solucionar ambos problemas respetando el ciclo de vida de React 19?"*
+>
+> **Resultado:** La IA propuso convertir las funciones flecha a declaraciones de funciones regulares (`async function fetchX()`) posicionadas debajo del `useEffect` para aprovechar el mecanismo de *hoisting* (elevación) de JavaScript, eliminando las alertas de renderizado en cascada de raíz.
+
+#### 3. Prompt para la generación del script de Base de Datos (Seed Data)
+> *"Genera un script SQL compatible con PostgreSQL que cree 6 tablas relacionales normalizadas para nuestro sistema 'Petcare': propietarios, mascotas, veterinarios, citas, servicios y la tabla intermedia citas_servicios. Incluye restricciones de integridad referencial como `ON DELETE CASCADE`, `ON DELETE RESTRICT` y reglas de validación `CHECK` para campos numéricos y lógicos. Además, genera un set de 10 registros de prueba realistas por tabla para validar la paginación y el rendimiento de las tablas en el frontend."*
+>
+> **Resultado:** Producción del archivo `data-pretcare01.sql` con la base de datos robusta y los inserts iniciales que utiliza el backend actualmente.
 
 ## Capturas de pantalla o evidencias
 
