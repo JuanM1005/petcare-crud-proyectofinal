@@ -8,6 +8,8 @@ export const getStats = async (_req: Request, res: Response) => {
         (SELECT COUNT(*) FROM mascotas)::int AS total_mascotas,
         (SELECT COUNT(*) FROM propietarios)::int AS total_propietarios,
         (SELECT COUNT(*) FROM veterinarios)::int AS total_veterinarios,
+        (SELECT COUNT(*) FROM servicios)::int AS total_servicios,
+        (SELECT COUNT(*) FROM citas)::int AS total_citas,
         (SELECT COUNT(*) FROM citas
           WHERE estado = 'programada'
           AND fecha_hora::date = CURRENT_DATE)::int AS citas_hoy,

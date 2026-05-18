@@ -21,6 +21,15 @@ app.use(cors());
 // express.json(): Parsea el cuerpo de las peticiones entrantes a formato JSON automáticamente
 app.use(express.json());
 
+// Deshabilitar caché del navegador para asegurar actualización de datos en tiempo real
+app.use((_req, res, next) => {
+  res.setHeader('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.setHeader('Pragma', 'no-cache');
+  res.setHeader('Expires', '0');
+  res.setHeader('Surrogate-Control', 'no-store');
+  next();
+});
+
 // Registro de Rutas
 // Cada línea registra todas las rutas de una entidad bajo su prefijo RESTful.
 // Por ejemplo, propietariosRoutes agrupa endpoints bajo /api/propietarios.
