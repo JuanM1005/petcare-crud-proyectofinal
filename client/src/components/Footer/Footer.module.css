@@ -1,0 +1,167 @@
+.footer {
+  background-color: #831843;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.8);
+  margin-top: 4rem;
+  width: 100%;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 2fr 1fr;
+  gap: 3rem;
+  padding: 4rem 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+@media (max-width: 992px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 2.5rem;
+    padding: 3rem 1.5rem;
+  }
+}
+
+/* Columna Izquierda */
+.columnLeft {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.logoContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.logoIcon {
+  color: var(--color-primary);
+  filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.4));
+}
+
+.logoText {
+  color: #ffffff;
+  font-size: 1.75rem;
+  font-weight: 800;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.tagline {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.socialIcons {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.5rem;
+}
+
+.socialIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  color: var(--color-gray-400);
+  transition: all var(--transition-normal);
+  border: 1px solid transparent;
+}
+
+.socialIcon:hover {
+  background: rgba(59, 130, 246, 0.1);
+  color: var(--color-primary-hover);
+  border-color: rgba(59, 130, 246, 0.2);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+}
+
+/* Columna Central */
+.columnCenter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.academicTitle {
+  color: #ffffff;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin: 0 0 0.5rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.academicList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.academicList li {
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.academicList strong {
+  color: #ffffff;
+  font-weight: 600;
+}
+
+/* Columna Derecha */
+.columnRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cuceiLogo {
+  max-width: 140px;
+  height: auto;
+  opacity: 0.9;
+  transition: all var(--transition-normal);
+  filter: drop-shadow(0 0 10px rgba(0, 0, 0, 0.05));
+}
+
+.cuceiLogo:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.1));
+}
+
+@media (max-width: 992px) {
+  .columnRight {
+    justify-content: flex-start;
+  }
+}
+
+/* Franja Inferior */
+.bottomBar {
+  background-color: rgba(0, 0, 0, 0.3);
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bottomBar p {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--color-gray-500);
+}
+
+@media (max-width: 768px) {
+  .footer {
+    margin-bottom: 70px; /* Make sure it doesn't get hidden behind bottom nav bar */
+  }
+}

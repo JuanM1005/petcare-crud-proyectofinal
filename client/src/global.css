@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Inter:wght@400;500;600&display=swap');
 
 /* Reset */
 *,
@@ -10,20 +10,20 @@
 }
 
 :root {
-  /* Colores principales */
-  --color-primary: #1a6fc4;
-  --color-primary-hover: #155a9e;
-  --color-primary-active: #0f4882;
-  --color-primary-light: #e8f2fc;
+  /* Colores principales vibrantes (Azul Zafiro/Cielo) */
+  --color-primary: #3b82f6;
+  --color-primary-hover: #60a5fa;
+  --color-primary-active: #2563eb;
+  --color-primary-light: rgba(59, 130, 246, 0.15);
 
   --color-danger: #ef4444;
-  --color-danger-hover: #dc2626;
-  --color-danger-light: #fee2e2;
+  --color-danger-hover: #f87171;
+  --color-danger-light: rgba(239, 68, 68, 0.1);
 
   --color-success: #10b981;
   --color-warning: #f59e0b;
 
-  /* Grises / Neutrales */
+  /* Grises adaptados para Light Mode (Slate limpio) */
   --color-gray-50: #f8fafc;
   --color-gray-100: #f1f5f9;
   --color-gray-200: #e2e8f0;
@@ -35,43 +35,46 @@
   --color-gray-800: #1e293b;
   --color-gray-900: #0f172a;
 
-  /* Fondos */
-  --color-bg: #f4f7f9;
-  --color-bg-card: #ffffff;
-  --color-sidebar: #0f2a4a;
-  --color-sidebar-hover: rgba(255, 255, 255, 0.08);
+  /* Fondos Premium Claros y Glassmorphism */
+  --color-bg: #f0f9ff;
+  --color-bg-card: rgba(255, 255, 255, 0.95);
+  --color-sidebar: #db2777; /* Rosa Mexicano */
+  --color-sidebar-hover: rgba(255, 255, 255, 0.1);
 
   /* Texto */
-  --color-text: var(--color-gray-800);
+  --color-text: var(--color-gray-900);
   --color-text-light: var(--color-gray-500);
   --color-text-inverse: #ffffff;
 
-  /* Bordes y sombras */
-  --color-border: var(--color-gray-200);
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-  --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-  --shadow-primary: 0 4px 14px 0 rgba(26, 111, 196, 0.39);
+  /* Bordes y sombras (Soft Glows) */
+  --color-border: rgba(15, 23, 42, 0.1);
+  --shadow-sm: 0 2px 4px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 6px 12px -2px rgba(0, 0, 0, 0.08), 0 3px 6px -3px rgba(0, 0, 0, 0.06);
+  --shadow-lg: 0 15px 35px -5px rgba(0, 0, 0, 0.1), 0 8px 15px -8px rgba(0, 0, 0, 0.08);
+  --shadow-primary: 0 4px 14px 0 rgba(59, 130, 246, 0.25);
+  --shadow-glow: 0 0 20px rgba(59, 130, 246, 0.15);
 
-  /* Espaciado y bordes */
-  --radius-sm: 0.375rem;
-  --radius: 0.5rem;
-  --radius-lg: 0.75rem;
-  --radius-xl: 1rem;
+  /* Espaciado y bordes suaves */
+  --radius-sm: 0.5rem;
+  --radius: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
 
-  /* Transiciones */
+  /* Transiciones fluidas */
   --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
   --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 body {
   font-family:
-    'Nunito',
+    'Outfit',
+    'Inter',
     system-ui,
     -apple-system,
     sans-serif;
-  background-color: var(--color-bg);
+  background-color: #fffbeb;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><text x="20" y="40" font-size="24" opacity="0.08">🐱</text><text x="80" y="80" font-size="24" opacity="0.08">🐶</text><text x="50" y="110" font-size="24" opacity="0.08">🐰</text></svg>');
+  background-attachment: fixed;
   color: var(--color-text);
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
@@ -81,11 +84,12 @@ body {
 a {
   color: var(--color-primary);
   text-decoration: none;
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 a:hover {
   color: var(--color-primary-hover);
+  text-shadow: 0 0 8px rgba(167, 139, 250, 0.5);
 }
 
 button {
@@ -99,14 +103,15 @@ button {
 input,
 select,
 textarea {
-  font-family: inherit;
+  font-family: 'Inter', sans-serif;
   font-size: 0.95rem;
-  padding: 0.6rem 0.85rem;
-  border: 1.5px solid var(--color-border);
-  border-radius: var(--radius-sm);
+  padding: 0.7rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
   color: var(--color-text);
-  background-color: var(--color-bg-card);
-  transition: all var(--transition-fast);
+  background-color: rgba(255, 255, 255, 0.6);
+  backdrop-filter: blur(10px);
+  transition: all var(--transition-normal);
 }
 
 input:focus,
@@ -114,7 +119,8 @@ select:focus,
 textarea:focus {
   outline: none;
   border-color: var(--color-primary);
-  box-shadow: 0 0 0 3px rgba(26, 111, 196, 0.12);
+  box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2), var(--shadow-glow);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 /* Scrollbar personalizado */

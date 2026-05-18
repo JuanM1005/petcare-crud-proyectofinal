@@ -4,6 +4,8 @@ export interface DashboardStats {
   total_mascotas: number;
   total_propietarios: number;
   total_veterinarios: number;
+  total_servicios: number;
+  total_citas: number;
   citas_hoy: number;
   citas_mes: number;
 }

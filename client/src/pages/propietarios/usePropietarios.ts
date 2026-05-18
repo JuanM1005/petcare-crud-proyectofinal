@@ -15,7 +15,7 @@ export const usePropietarios = () => {
     fetchPropietarios();
   }, []);
 
-  const fetchPropietarios = async () => {
+  async function fetchPropietarios() {
     try {
       setLoading(true);
       const data = await propietariosService.getAll();
@@ -26,7 +26,7 @@ export const usePropietarios = () => {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   const handleCreate = async (data: PropietarioFormData) => {
     try {

@@ -10,3 +10,4 @@ export * from './DataTable/DataTable';
 export * from './ServicioForm/ServicioForm';
 export * from './CitaForm/CitaForm';
 export * from './StatusBadge/StatusBadge';
+export * from './Footer/Footer';
