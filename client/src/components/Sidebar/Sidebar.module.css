@@ -90,7 +90,11 @@
 }
 
 .navLink.active {
-  background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.4),
+    rgba(255, 255, 255, 0.1)
+  );
   border: 1px solid rgba(255, 255, 255, 0.3);
   color: #ffffff;
   font-weight: 700;
@@ -185,7 +189,7 @@
     border-radius: 2rem;
     color: #ffffff;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
-    padding: 0.5rem; 
+    padding: 0.5rem;
     margin: 0.2rem;
   }
 

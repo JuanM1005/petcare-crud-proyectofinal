@@ -10,19 +10,34 @@ CRUD web para la gestión de una clínica veterinaria: mascotas, propietarios, v
 
 Proyecto final de la materia **DESARROLLO DE APLICACIONES WEB EN LA NUBE Y MÓVILES V0749**.
 
-> 🎥 **[Video Demostrativo del Proyecto (Inserta tu enlace aquí)](#)**
+> 🎥 **[Video Demostrativo del Proyecto https://youtu.be/TJFvm-GMHKI](#)**
 
 ## 📋 Índice
 
-- [Problema o necesidad que resuelve](#problema-o-necesidad-que-resuelve)
-- [Funcionalidades principales](#funcionalidades-principales)
-- [Tecnologías](#tecnologías)
-- [Instalación y Ejecución](#requisitos-previos)
-- [Estructura del proyecto](#estructura-del-proyecto)
-- [Base de datos y API REST](#base-de-datos)
-- [Inteligencia Artificial Utilizada](#herramientas-de-ia-utilizadas)
-- [Evidencias Visuales](#capturas-de-pantalla-o-evidencias)
-- [Equipo y Conclusiones](#equipo)
+- [🐾 PetCare - Sistema Veterinario PWA Offline-First](#-petcare---sistema-veterinario-pwa-offline-first)
+  - [📋 Índice](#-índice)
+  - [Tecnologías](#tecnologías)
+  - [Requisitos previos](#requisitos-previos)
+  - [Instalación](#instalación)
+    - [1. Clonar el repositorio](#1-clonar-el-repositorio)
+    - [2. Crear la base de datos](#2-crear-la-base-de-datos)
+    - [3. Configurar variables de entorno](#3-configurar-variables-de-entorno)
+    - [4. Instalar dependencias](#4-instalar-dependencias)
+  - [Ejecución](#ejecución)
+  - [Estructura del proyecto](#estructura-del-proyecto)
+  - [Base de datos](#base-de-datos)
+    - [Constraints utilizados](#constraints-utilizados)
+    - [Tipos de datos](#tipos-de-datos)
+  - [API REST — Endpoints](#api-rest--endpoints)
+  - [Comandos útiles](#comandos-útiles)
+  - [Solución de problemas](#solución-de-problemas)
+  - [Equipo](#equipo)
+  - [Problema o necesidad que resuelve](#problema-o-necesidad-que-resuelve)
+  - [Funcionalidades principales](#funcionalidades-principales)
+  - [Herramientas de IA utilizadas](#herramientas-de-ia-utilizadas)
+  - [Prompts principales o resumen del uso de IA](#prompts-principales-o-resumen-del-uso-de-ia)
+  - [Capturas de pantalla o evidencias](#capturas-de-pantalla-o-evidencias)
+  - [Conclusiones individuales del equipo](#conclusiones-individuales-del-equipo)
 
 ---
 
