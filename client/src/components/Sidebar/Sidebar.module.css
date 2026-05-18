@@ -1,6 +1,6 @@
 .nav {
   width: 260px;
-  background: linear-gradient(180deg, #ec4899 0%, #f97316 100%);
+  background: linear-gradient(180deg, #4874ec 0%, #2649ac 100%);
   color: #ffffff;
   padding: 1.5rem 1rem;
   display: flex;
@@ -30,7 +30,7 @@
 }
 
 .logoIcon {
-  color: var(--color-primary-light);
+  color: var(--color-white);
 }
 
 .logo {

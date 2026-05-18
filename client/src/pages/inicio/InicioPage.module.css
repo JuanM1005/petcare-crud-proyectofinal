@@ -14,13 +14,13 @@
 
 /* Hero */
 .hero {
-  background: #06b6d4 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><text x="20" y="40" font-size="24">✨</text><text x="80" y="90" font-size="24">✨</text></svg>');
+  background: #0670d4 url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><text x="20" y="40" font-size="24">✨</text><text x="80" y="90" font-size="24">✨</text></svg>');
   border-radius: var(--radius-lg);
   padding: 3rem;
   color: white;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 10px 25px rgba(6, 182, 212, 0.4);
+  box-shadow: 0 10px 25px rgba(255, 229, 174, 0.4);
   margin-bottom: 2.5rem;
 }
 
@@ -76,12 +76,12 @@
   border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
-  justify-content: center; /* Center the contents inside */
+  justify-content: center; 
   gap: 1rem;
   transition: all var(--transition-normal);
   border: 2px solid transparent;
   flex: 1;
-  min-width: 180px; /* Allow cards to stretch without hitting a small max-width */
+  min-width: 300px;
 }
 
 .statCard:hover {
